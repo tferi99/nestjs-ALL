@@ -1,0 +1,28 @@
+<div class="devComponent">
+  <p>
+    <strong>Counter2: </strong>{{counter2 | async}}
+  </p>
+
+  <div class="card alert alert-warning" title="Add random person">
+    <div class="card-header nowrapped-truncated-text d-flex justify-content-center" role="button" (click)="addRandomPerson()">
+      <i class="fa fa-plus mr-1"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+
+  <form [formGroup]="itemsForm" (ngSubmit)="onItemsSubmit()" class="mb-3">
+      <div *ngFor="let p of (persons$ | async)" class="form-check mb-2" >
+        <input class="form-check-input" type="checkbox" [formControlName]="p.id">
+        <label class="form-check-label">{{p.name}}</label>
+      </div>
+
+    <button type="submit" class="btn btn-danger">Delete selected <i class="fas fa-trash"></i></button>
+  </form>
+
+  {{something}}
+  <button class="btn btn-primary mr-2" (click)="triggerChangeDetection()">Change detection</button>
+  <button class="btn btn-info" (click)="addRandomNote()" title="Add random note">
+    <i class="fa fa-plus mr-1"></i>
+    <i class="far fa-sticky-note"></i>
+  </button>
+</div>

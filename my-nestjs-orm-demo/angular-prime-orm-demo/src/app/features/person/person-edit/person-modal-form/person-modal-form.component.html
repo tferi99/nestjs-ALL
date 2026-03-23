@@ -1,0 +1,55 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" (appOnEscape)="onCancel()" style="height: 100%">
+  <div class="p-fluid p-formgrid grid">
+    <div class="field col-4">
+      <label htmlFor="name">Name</label>
+      <input pInputText id="name" type="text" [formControl]="name" placeholder="Name" autofocus/>
+      <small id="name-help" class="p-error block">{{getFormControlErrorMessage(name)}}</small>
+    </div>
+    <div class="field col-4">
+      <label htmlFor="email">Email</label>
+      <input pInputText id="email" type="text" [formControl]="email" placeholder="Email"/>
+      <small id="email-help" class="p-error block">{{getFormControlErrorMessage(email)}}</small>
+    </div>
+    <div class="field col-4">
+      <label htmlFor="birth">Birth</label>
+      <p-calendar [dateFormat]="dateFormat" inputId="birth" [formControl]="birth" appendTo="body"></p-calendar>
+      <small id="birth-help" class="p-error block">{{getFormControlErrorMessage(birth)}}</small>
+    </div>
+
+  </div>
+  <div class="p-fluid p-formgrid grid">
+    <div class="field col-4" *ngIf="additionalData.companies">
+      <label htmlFor="company">Company</label>
+      <p-dropdown id="company" [options]="additionalData.companies" [formControl]="company" placeholder="Select a company" optionLabel="name" optionValue="id" [showClear]="true" appendTo="body"></p-dropdown>
+    </div>
+    <div class="field col-4" *ngIf="additionalData.companies">
+      <label htmlFor="employeeType">Employee Type</label>
+      <p-dropdown id="employeeType" [options]="employeeTypes" [formControl]="employeeType" placeholder="Select employee type" optionLabel="key" optionValue="value" [showClear]="true" appendTo="body"></p-dropdown>
+    </div>
+    <div class="field col-4">
+      <label htmlFor="email">Email</label>
+      <input pInputText id="rank" type="number" [formControl]="rank" placeholder="Rank"/>
+      <small id="rank-help" class="p-error block">{{getFormControlErrorMessage(rank)}}</small>
+    </div>
+  </div>
+
+  <div class="field-checkbox">
+    <p-inputSwitch formControlName="active"></p-inputSwitch>
+    <label htmlFor="active">Active</label>
+  </div>
+
+  <div class="grid">
+    <div class="field col-6">
+      <button pButton pRipple type="submit" class="p-button-success mr-2" [disabled]="!form.valid" label="OK"></button>
+      <button pButton pRipple type="button" class="p-button-danger mr-2" label="Cancel" (click)="onCancel()"></button>
+    </div>
+    <div class="field col-6 flex justify-content-end">
+      <button pButton pRipple type="button" class="p-button-warning" label="Random" (click)="fillRandom()"></button>
+    </div>
+  </div>
+  <!--
+      <button pButton pRipple type="button" class="p-button-warning" label="Dump" (click)="onDump()"></button>
+      <button pButton pRipple type="button" class="p-button-warning" label="Populate date" (click)="onPopulate()"></button>
+      <button pButton pRipple type="button" class="p-button-warning" label="Test" (click)="onTest()"></button>
+  -->
+</form>

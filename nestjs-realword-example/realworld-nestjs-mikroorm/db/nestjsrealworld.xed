@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram version="1.0" type="POSTGRES" versionMajor="9" versionMinor="4" groupSchema="false">
+<Table id="0" name="article" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="1" name="id" type="int4" length="0" nulls="false">
+<CP name="DEFAULT_VALUE">nextval('article_id_seq'::regclass)</CP>
+</Column>
+<Column id="2" name="slug" type="varchar" length="255" nulls="false"/>
+<Column id="3" name="title" type="varchar" length="255" nulls="false"/>
+<Column id="4" name="description" type="varchar" length="255" nulls="false"/>
+<Column id="5" name="body" type="varchar" length="255" nulls="false"/>
+<Column id="6" name="created_at" type="timestamptz" length="0" nulls="false"/>
+<Column id="7" name="updated_at" type="timestamptz" length="0" nulls="false"/>
+<Column id="8" name="tag_list" type="_text" length="0" nulls="false"/>
+<Column id="9" name="author_id" type="int4" length="0" nulls="false"/>
+<Column id="10" name="favorites_count" type="int4" length="0" nulls="false"/>
+</Table>
+<Table id="11" name="comment" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="12" name="id" type="int4" length="0" nulls="false">
+<CP name="DEFAULT_VALUE">nextval('comment_id_seq'::regclass)</CP>
+</Column>
+<Column id="13" name="created_at" type="timestamptz" length="0" nulls="false"/>
+<Column id="14" name="updated_at" type="timestamptz" length="0" nulls="false"/>
+<Column id="15" name="body" type="varchar" length="255" nulls="false"/>
+<Column id="16" name="article_id" type="int4" length="0" nulls="false"/>
+<Column id="17" name="author_id" type="int4" length="0" nulls="false"/>
+</Table>
+<Table id="18" name="tag" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="19" name="id" type="int4" length="0" nulls="false">
+<CP name="DEFAULT_VALUE">nextval('tag_id_seq'::regclass)</CP>
+</Column>
+<Column id="20" name="tag" type="varchar" length="255" nulls="false"/>
+</Table>
+<Table id="21" name="user" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="22" name="id" type="int4" length="0" nulls="false">
+<CP name="DEFAULT_VALUE">nextval('user_id_seq'::regclass)</CP>
+</Column>
+<Column id="23" name="username" type="varchar" length="255" nulls="false"/>
+<Column id="24" name="email" type="varchar" length="255" nulls="false"/>
+<Column id="25" name="bio" type="varchar" length="255" nulls="false"/>
+<Column id="26" name="image" type="varchar" length="255" nulls="false"/>
+<Column id="27" name="password" type="varchar" length="255" nulls="false"/>
+</Table>
+<Table id="28" name="user_favorites" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="29" name="user_id" type="int4" length="0" nulls="false"/>
+<Column id="30" name="article_id" type="int4" length="0" nulls="false"/>
+</Table>
+<Table id="31" name="user_to_follower" schema="public" database="nestjsrealworld" background="16777165">
+<Column id="32" name="follower" type="int4" length="0" nulls="false"/>
+<Column id="33" name="following" type="int4" length="0" nulls="false"/>
+</Table>
+<Relation id="34" name="article_author_id_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="NO ACTION"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>22</FK>
+<PK>9</PK>
+</Relation>
+<Relation id="35" name="comment_author_id_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="NO ACTION"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>22</FK>
+<PK>17</PK>
+</Relation>
+<Relation id="36" name="comment_article_id_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="NO ACTION"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>1</FK>
+<PK>16</PK>
+</Relation>
+<Relation id="37" name="user_favorites_user_id_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="CASCADE"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>22</FK>
+<PK>29</PK>
+</Relation>
+<Relation id="38" name="user_favorites_article_id_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="CASCADE"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>1</FK>
+<PK>30</PK>
+</Relation>
+<Relation id="39" name="user_to_follower_following_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="CASCADE"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>22</FK>
+<PK>33</PK>
+</Relation>
+<Relation id="40" name="user_to_follower_follower_foreign" cardinality="-2" identifying="false" nulls="false">
+<Option name="initially" class="String" value="IMMEDIATE"/>
+<Option name="deferrable" class="Boolean" value="false"/>
+<Option name="match" class="String" value=""/>
+<Option name="onDelete" class="String" value="CASCADE"/>
+<Option name="onUpdate" class="String" value="CASCADE"/>
+<FK>22</FK>
+<PK>32</PK>
+</Relation>
+<Constraint table="0" name="article_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="1"/>
+</Constraint>
+<Constraint table="11" name="comment_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="12"/>
+</Constraint>
+<Constraint table="18" name="tag_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="19"/>
+</Constraint>
+<Constraint table="21" name="user_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="22"/>
+</Constraint>
+<Constraint table="28" name="user_favorites_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="29"/>
+<ConstraintColumn id="30"/>
+</Constraint>
+<Constraint table="31" name="user_to_follower_pkey" type="PrimKey">
+<Option name="tablespace" class="String" value="&lt;DEFAULT&gt;"/>
+<ConstraintColumn id="32"/>
+<ConstraintColumn id="33"/>
+</Constraint>
+<Sheet name="nestjsrealworld" id="41" disp_at="true" disp_ph="true" disp_co="true">
+<Place id="39" visible="true">500,0,0,0</Place>
+<Place id="18" visible="true">534,399,130,60</Place>
+<Place id="36" visible="true" options="965.5612700362615,259.5900519080994,160.0,190.0,1156.4283954147145,100.19113855384006,160.0,130.0,3,1125.0,350.0,1230.0,350.0,1230.0,230.0">500,0,0,0</Place>
+<Place id="38" visible="true" options="965.5612700362615,259.5900519080994,160.0,190.0,775.0373053446277,354.34246049820115,120.0,60.0,4,965.5612700362615,380.0,930.0,380.0,930.0,380.0,895.0,380.0">500,0,0,0</Place>
+<Place id="21" visible="true">686,0,160,130</Place>
+<Place id="28" visible="true">775,354,120,60</Place>
+<Place id="35" visible="true" options="686.0,0.0,160.0,130.0,1156.4283954147145,100.19113855384006,160.0,130.0,3,846.0,60.0,1230.0,60.0,1230.0,100.0">500,0,0,0</Place>
+<Place id="11" visible="true">1156,100,160,130</Place>
+<Place id="37" visible="true" options="686.0,0.0,160.0,130.0,775.0373053446277,354.34246049820115,120.0,60.0,2,800.0,130.0,800.0,354.34246049820115">500,0,0,0</Place>
+<Place id="40" visible="true" options="686.0,0.0,160.0,130.0,385.55204637485474,255.23836774849147,110.0,60.0,3,686.0,90.0,440.0,90.0,440.0,255.23836774849147">500,0,0,0</Place>
+<Place id="34" visible="true" options="686.0,0.0,160.0,130.0,965.5612700362615,259.5900519080994,160.0,190.0,3,846.0,110.0,1060.0,110.0,1060.0,259.5900519080994">500,0,0,0</Place>
+<Place id="0" visible="true">965,259,160,190</Place>
+<Place id="31" visible="true">385,255,110,60</Place>
+</Sheet>
+<Settings sheet="41" zoom="1.2860615384615393"/>
+</Diagram>

@@ -1,0 +1,24 @@
+<div class="devComponent">
+  <p>
+    <strong>Counter1: </strong>{{counter1 | async}}
+  </p>
+
+  <div class="card alert alert-success" title="Add random company">
+    <div class="card-header nowrapped-truncated-text d-flex justify-content-center" role="button" (click)="addRandomCompany()">
+      <i class="fa fa-plus mr-1"></i>
+      <i class="fas fa-industry"></i>
+    </div>
+  </div>
+
+  <form [formGroup]="itemsForm" (ngSubmit)="onItemsSubmit()" class="mb-3">
+    <div *ngFor="let c of (companies$ | async)" class="form-check mb-2" >
+      <input class="form-check-input" type="checkbox" [formControlName]="c.id">
+      <label class="form-check-label">{{c.name}}</label> [{{c.id}}]
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete selected <i class="fas fa-trash"></i></button>
+  </form>
+
+  {{something}}
+  <button class="btn btn-primary" (click)="triggerChangeDetection()">Change detection</button>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest CORS Test</title>
+    <script>
+        const userAction = async (url) => {
+            const response = await fetch(url);
+            const myJson = await response.json(); //extract JSON from the http response
+            console.log('Result:', myJson);
+        }
+    </script>
+</head>
+<body>
+<h2>Rest CORS Test</h2>
+<button onclick="userAction('http://localhost:3000/user')">Call my REST (same origin)</button>
+<button onclick="userAction('http://10.51.51.122:8080/andphone/api/recorder/ondemand')">Call external REST (different origin)</button>
+<hr>
+<small><i>Open JS console and/or Network in DevTools for watching results.
+<p>
+Expected behavior: REST from
+<ul>
+	<li>REST from the same origin works
+	<li>REST from different origin works only with 'Access-Control-Allow-Origin' header in response
+</ul>	
+</i></small>
+</body>
+</html>

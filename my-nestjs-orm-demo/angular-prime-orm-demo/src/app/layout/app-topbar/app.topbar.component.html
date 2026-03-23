@@ -1,0 +1,57 @@
+<div class="layout-topbar">
+  <a class="layout-topbar-logo" routerLink="">
+    <!--
+    <img src="assets/layout/images/{{ appMain.config.dark ? 'logo-white' : 'logo-dark' }}.svg" alt="logo" />
+    -->
+    <img src="assets/logo-small.png" alt="logo" />
+    <span>MikroORM DEMO (Prime)</span>
+  </a>
+
+  <a class="p-link layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
+    <i class="pi pi-bars"></i>
+  </a>
+
+  <a class="p-link layout-topbar-menu-button layout-topbar-button" href="#" (click)="appMain.toggleTopMenu($event)">
+    <i class="pi pi-ellipsis-v"></i>
+  </a>
+
+  <div class="layout-topbar-menu" [ngClass]="{ 'layout-topbar-menu-mobile-active': appMain.topMenuActive }">
+    <a class="p-link layout-topbar-button">
+      <i class="pi pi-play" routerLink="/pages/test"></i>
+      <span>Test</span>
+    </a>
+
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi pi-download" (click)="dumpConfig()"></i>
+      <span>Dump</span>
+    </a>
+
+    <!--
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi pi-eye" (click)="switchTheme('bootstrap4-light-blue')"></i>
+      <span>Theme</span>
+    </a>
+
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi pi-bell" (click)="switchTheme('bootstrap4-dark-purple')"></i>
+      <span>Theme</span>
+    </a>
+    -->
+
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi" [ngClass]="getThemeIcon()" (click)="toggleDark()"></i>
+      <span>Theme</span>
+    </a>
+
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi pi-cog"></i>
+      <span>Settings</span>
+    </a>
+    <a href="#" class="p-link layout-topbar-button">
+      <i class="pi pi-user" (click)="userMenu.toggle($event)"></i>
+      <span>Profile</span>
+    </a>
+  </div>
+</div>
+
+<p-menu #userMenu [popup]="true" [model]="userMenuItems"></p-menu>
